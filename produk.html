@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produk - Toko Olahraga</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Beranda</a>
+  <a href="produk.html" class="active">Produk</a>
+  <a href="keranjang.html">Keranjang</a>
+  <a href="about.html">About</a>
+  <a href="kontak.html">kontak</a>
+</nav>
+
+<div class="container">
+  <h1 class="section-title">Produk Kami</h1>
+  <div class="products">
+
+    <!-- 7 Produk -->
+    <div class="product">
+      <img src=https://i.pinimg.com/1200x/ce/72/a7/ce72a76759353a1353d811f4ac3a290f.jpg alt="Sepatu Bola">
+      <h3>Sepatu Bola</h3>
+      <p>Rp 750.000</p>
+      <button onclick="addToCart('Sepatu Bola',450000)">Tambah ke Keranjang</button>
+    </div>
+
+    <div class="product">
+      <img src=https://i.pinimg.com/736x/98/ed/40/98ed40d762266b335a510ed853051899.jpg alt="Jersey Timnas">
+      <h3>Jersey Timnas</h3>
+      <p>Rp 900.000</p>
+      <button onclick="addToCart('Jersey Timnas',300000)">Tambah ke Keranjang</button>
+    </div>
+
+    <div class="product">
+      <img src=https://i.pinimg.com/736x/8b/07/00/8b07009db7a3a41ea2752ccf8f761f5a.jpg alt="Bola Basket">
+      <h3>Bola Basket</h3>
+      <p>Rp 650.000</p>
+      <button onclick="addToCart('Bola Basket',250000)">Tambah ke Keranjang</button>
+    </div>
+
+    <div class="product">
+      <img src=https://i.pinimg.com/736x/a3/cc/72/a3cc72337a3d0d98cb02c04f6770c74e.jpg alt="Raket Badminton">
+      <h3>Raket Badminton</h3>
+      <p>Rp 500.000</p>
+      <button onclick="addToCart('Raket Badminton',500000)">Tambah ke Keranjang</button>
+    </div>
+
+    <div class="product">
+      <img src=https://i.pinimg.com/736x/f2/9c/92/f29c92e35fd144381f3d5ef4e0562353.jpg alt="Sarung Tangan Kiper">
+      <h3>Sarung Tangan Kiper</h3>
+      <p>Rp 200.000</p>
+      <button onclick="addToCart('Sarung Tangan Kiper',200000)">Tambah ke Keranjang</button>
+    </div>
+
+    <div class="product">
+      <img src=https://i.pinimg.com/736x/ce/56/b6/ce56b64e727f1d69610a70fdba87084e.jpg alt="Tas Olahraga">
+      <h3>Tas Olahraga</h3>
+      <p>Rp 350.000</p>
+      <button onclick="addToCart('Tas Olahraga',350000)">Tambah ke Keranjang</button>
+    </div>
+
+    <div class="product">
+      <img src=https://i.pinimg.com/736x/09/7e/ba/097eba2a30b1b724a67dd3585d93984a.jpg alt="Matras Yoga">
+      <h3>Matras Yoga</h3>
+      <p>Rp 150.000</p>
+      <button onclick="addToCart('Matras Yoga',150000)">Tambah ke Keranjang</button>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Toko Olahraga. Semua Hak Dilindungi.</p>
+</footer>
+
+<script>
+function addToCart(name, price){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let index = cart.findIndex(item => item.nama === name);
+  if(index != -1){ cart[index].jumlah +=1; }
+  else{ cart.push({nama:name,harga:price,jumlah:1}); }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name+" berhasil ditambahkan ke keranjang!");
+}
+</script>
+
+</body>
+</html>

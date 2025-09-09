@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keranjang - Toko Olahraga</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="produk.html">Produk</a>
+    <a href="keranjang.html" class="active">Keranjang</a>
+    <a href="kontak.html">Kontak</a>
+    <a href="about.html">Tentang Toko</a>
+  </nav>
+
+  <div class="container">
+    <h1>Keranjang Belanja</h1>
+
+    <!-- Daftar Produk di Keranjang -->
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Produk</th>
+          <th>Harga</th>
+          <th>Jumlah</th>
+          <th>Total</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="cart-items">
+        <!-- Data keranjang masuk otomatis dari JS -->
+      </tbody>
+    </table>
+
+    <!-- Total Belanja -->
+    <div class="cart-summary">
+      <h3>Total Belanja: <span id="cart-total">Rp 0</span></h3>
+    </div>
+
+    <!-- Pilihan Pembayaran -->
+    <div class="payment-method">
+      <h3>Pilih Metode Pembayaran</h3>
+      <label><input type="radio" name="payment" value="Cash"> Cash</label><br>
+      <label><input type="radio" name="payment" value="Dana"> Dana</label><br>
+      <label><input type="radio" name="payment" value="Transfer Bank"> Transfer Bank</label>
+    </div>
+
+    <!-- Tombol Checkout -->
+    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Toko Olahraga. Semua Hak Dilindungi.</p>
+  </footer>
+
+  <!-- Script Keranjang -->
+  <script>
+    // Data keranjang disimpan di localStorage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+      const cartTable = document.getElementById("cart-items");
+      const cartTotal = document.getElementById("cart-total");
+      cartTable.innerHTML = "";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        let subtotal = item.harga * item.jumlah;
+        total += subtotal;
+
+        cartTable.innerHTML += `
+          <tr>
+            <td>${item.nama}</td>
+            <td>Rp ${item.harga.toLocaleString()}</td>
+            <td>${item.jumlah}</td>
+            <td>Rp ${subtotal.toLocaleString()}</td>
+            <td><button onclick="removeItem(${index})">Hapus</button></td>
+          </tr>
+        `;
+      });
+
+      cartTotal.textContent = "Rp " + total.toLocaleString();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function checkout() {
+      const metode = document.querySelector('input[name="payment"]:checked');
+      if (!metode) {
+        alert("Pilih metode pembayaran terlebih dahulu!");
+        return;
+      }
+      alert("Checkout berhasil!\nMetode Pembayaran: " + metode.value);
+      localStorage.removeItem("cart"); // kosongkan keranjang
+      location.reload();
+    }
+
+    // Render awal
+    renderCart();
+  </script>
+
+</body>
+</html>

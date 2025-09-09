@@ -1,0 +1,146 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(-45deg, #1e3c72, #2a5298, #1e3c72, #2a5298);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+}
+
+/* ANIMASI BACKGROUND */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* NAVBAR */
+nav {
+  background: rgba(0,0,0,0.7);
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: yellow;
+}
+
+/* BANNER SLIDER */
+.banner {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slides {
+  display: flex;
+  width: 300%; /* 3 gambar */
+  height: 100%;
+  animation: slide 12s infinite;
+}
+
+.slides img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+}
+
+@keyframes slide {
+  0%   { transform: translateX(0%); }
+  30%  { transform: translateX(0%); }
+  35%  { transform: translateX(-100%); }
+  65%  { transform: translateX(-100%); }
+  70%  { transform: translateX(-200%); }
+  100% { transform: translateX(-200%); }
+}
+
+/* PRODUK GRID */
+.container {
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product {
+  background: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.product:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.05);
+}
+
+.product img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product h3 {
+  margin: 10px 0;
+}
+
+.product p {
+  margin: 10px 0;
+}
+
+button {
+  background: yellow;
+  color: black;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: orange;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  background: rgba(0,0,0,0.7);
+}
